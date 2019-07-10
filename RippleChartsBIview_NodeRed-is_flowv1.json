@@ -1,0 +1,226 @@
+[
+    {
+        "id": "f8da94c0.a762c8",
+        "type": "tab",
+        "label": "JSON-REDIS BI",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "b34ad83e.cc2008",
+        "type": "http in",
+        "z": "f8da94c0.a762c8",
+        "name": "[set] /BI-data",
+        "url": "/BI-data",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 80,
+        "wires": [
+            [
+                "fd2ff316.ded3f"
+            ]
+        ]
+    },
+    {
+        "id": "46355e47.44cb2",
+        "type": "redis-command",
+        "z": "f8da94c0.a762c8",
+        "server": "674a67d2.221358",
+        "command": "hset",
+        "name": "",
+        "topic": "",
+        "x": 730,
+        "y": 80,
+        "wires": [
+            [
+                "3074978a.e66218"
+            ]
+        ]
+    },
+    {
+        "id": "3074978a.e66218",
+        "type": "function",
+        "z": "f8da94c0.a762c8",
+        "name": "Result JSON",
+        "func": "msg.payload = {\n    \"save_name\": true,\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 970,
+        "y": 80,
+        "wires": [
+            [
+                "6e291547.76057c"
+            ]
+        ]
+    },
+    {
+        "id": "fd2ff316.ded3f",
+        "type": "function",
+        "z": "f8da94c0.a762c8",
+        "name": "Redis HSET params",
+        "func": "msg.payload = ['bi',\n    'data',\n    JSON.stringify({\n    patients: [\n      {\n         \"location\": \"York\",\n         \"age\": 51,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 85,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Halifax\",\n         \"age\": 32,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 66,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Darlington\",\n         \"age\": 41,\n         \"diagnosis\": \"Dementia\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Leeds\",\n         \"age\": 47,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 61,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 48,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 59,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Darlington\",\n         \"age\": 32,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 59,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Bradford\",\n         \"age\": 39,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 32,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Pickering\",\n         \"age\": 25,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 61,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 51,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 85,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Halifax\",\n         \"age\": 32,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 66,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Darlington\",\n         \"age\": 41,\n         \"diagnosis\": \"Dementia\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Sheffield\",\n         \"age\": 17,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 33,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Bradford\",\n         \"age\": 51,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 85,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Huddersfield\",\n         \"age\": 47,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 47,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Scarborough\",\n         \"age\": 41,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Leeds\",\n         \"age\": 63,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 55,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Leeds\",\n         \"age\": 19,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 32,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Leeds\",\n         \"age\": 38,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 53,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Leeds\",\n         \"age\": 61,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Leeds\",\n         \"age\": 78,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 77,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 13,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 95,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 59,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 68,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 44,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 63,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 52,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 63,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 97,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Halifax\",\n         \"age\": 51,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 85,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Halifax\",\n         \"age\": 32,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 66,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Halifax\",\n         \"age\": 41,\n         \"diagnosis\": \"Dementia\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Huddersfield\",\n         \"age\": 47,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 61,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Huddersfield\",\n         \"age\": 48,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 59,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Huddersfield\",\n         \"age\": 32,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 59,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Hull\",\n         \"age\": 39,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 32,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Hull\",\n         \"age\": 25,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 61,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Hull\",\n         \"age\": 51,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 85,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Hull\",\n         \"age\": 32,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 66,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Sheffield\",\n         \"age\": 41,\n         \"diagnosis\": \"Dementia\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Sheffield\",\n         \"age\": 17,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 33,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Scarborough\",\n         \"age\": 51,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 85,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Scarborough\",\n         \"age\": 47,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 47,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Scarborough\",\n         \"age\": 41,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Bridlington\",\n         \"age\": 63,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 55,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Bridlington\",\n         \"age\": 19,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 32,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Bridlington\",\n         \"age\": 38,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 53,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Rotherham\",\n         \"age\": 61,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Rotherham\",\n         \"age\": 78,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 77,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Rotherham\",\n         \"age\": 13,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 95,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Rotherham\",\n         \"age\": 59,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 68,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Pickering\",\n         \"age\": 44,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 63,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Pickering\",\n         \"age\": 52,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Pickering\",\n         \"age\": 63,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 97,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 51,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 85,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Halifax\",\n         \"age\": 32,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 66,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Darlington\",\n         \"age\": 41,\n         \"diagnosis\": \"Dementia\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Leeds\",\n         \"age\": 47,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 61,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 48,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 59,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Darlington\",\n         \"age\": 32,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 59,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Bradford\",\n         \"age\": 39,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 32,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Pickering\",\n         \"age\": 25,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 61,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 51,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 85,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Halifax\",\n         \"age\": 32,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 66,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Darlington\",\n         \"age\": 41,\n         \"diagnosis\": \"Dementia\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Sheffield\",\n         \"age\": 17,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 33,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Bradford\",\n         \"age\": 51,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 85,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Huddersfield\",\n         \"age\": 47,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 47,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Scarborough\",\n         \"age\": 41,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Leeds\",\n         \"age\": 63,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 55,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Leeds\",\n         \"age\": 19,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 32,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Leeds\",\n         \"age\": 38,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 53,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Leeds\",\n         \"age\": 61,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Leeds\",\n         \"age\": 78,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 77,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 13,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 95,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 59,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 68,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 44,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 63,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 52,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 63,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 97,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Halifax\",\n         \"age\": 51,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 85,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Halifax\",\n         \"age\": 32,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 66,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Halifax\",\n         \"age\": 41,\n         \"diagnosis\": \"Dementia\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Huddersfield\",\n         \"age\": 47,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 61,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Huddersfield\",\n         \"age\": 48,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 59,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Huddersfield\",\n         \"age\": 32,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 59,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Hull\",\n         \"age\": 39,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 32,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Hull\",\n         \"age\": 25,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 61,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Hull\",\n         \"age\": 51,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 85,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Hull\",\n         \"age\": 32,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 66,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Sheffield\",\n         \"age\": 41,\n         \"diagnosis\": \"Dementia\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Sheffield\",\n         \"age\": 17,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 33,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Scarborough\",\n         \"age\": 51,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 85,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Scarborough\",\n         \"age\": 47,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 47,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Scarborough\",\n         \"age\": 41,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Bridlington\",\n         \"age\": 63,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 55,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Bridlington\",\n         \"age\": 19,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 32,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Bridlington\",\n         \"age\": 38,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 53,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Rotherham\",\n         \"age\": 61,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Rotherham\",\n         \"age\": 78,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 77,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Rotherham\",\n         \"age\": 13,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 95,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Rotherham\",\n         \"age\": 59,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 68,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Pickering\",\n         \"age\": 44,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 63,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Pickering\",\n         \"age\": 52,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Pickering\",\n         \"age\": 63,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 97,\n         \"gender\": \"male\"\n      },  \n{\n         \"location\": \"York\",\n         \"age\": 51,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 85,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Halifax\",\n         \"age\": 32,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 66,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Darlington\",\n         \"age\": 41,\n         \"diagnosis\": \"Dementia\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Leeds\",\n         \"age\": 47,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 61,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 48,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 59,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Darlington\",\n         \"age\": 32,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 59,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Bradford\",\n         \"age\": 39,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 32,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Pickering\",\n         \"age\": 25,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 61,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 51,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 85,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Halifax\",\n         \"age\": 32,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 66,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Darlington\",\n         \"age\": 41,\n         \"diagnosis\": \"Dementia\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Sheffield\",\n         \"age\": 17,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 33,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Bradford\",\n         \"age\": 51,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 85,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Huddersfield\",\n         \"age\": 47,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 47,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Scarborough\",\n         \"age\": 41,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Leeds\",\n         \"age\": 63,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 55,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Leeds\",\n         \"age\": 19,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 32,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Leeds\",\n         \"age\": 38,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 53,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Leeds\",\n         \"age\": 61,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Leeds\",\n         \"age\": 78,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 77,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 13,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 95,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 59,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 68,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 44,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 63,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 52,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 63,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 97,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Halifax\",\n         \"age\": 51,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 85,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Halifax\",\n         \"age\": 32,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 66,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Halifax\",\n         \"age\": 41,\n         \"diagnosis\": \"Dementia\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Huddersfield\",\n         \"age\": 47,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 61,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Huddersfield\",\n         \"age\": 48,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 59,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Huddersfield\",\n         \"age\": 32,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 59,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Hull\",\n         \"age\": 39,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 32,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Hull\",\n         \"age\": 25,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 61,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Hull\",\n         \"age\": 51,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 85,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Hull\",\n         \"age\": 32,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 66,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Sheffield\",\n         \"age\": 41,\n         \"diagnosis\": \"Dementia\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Sheffield\",\n         \"age\": 17,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 33,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Scarborough\",\n         \"age\": 51,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 85,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Scarborough\",\n         \"age\": 47,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 47,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Scarborough\",\n         \"age\": 41,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Bridlington\",\n         \"age\": 63,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 55,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Bridlington\",\n         \"age\": 19,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 32,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Bridlington\",\n         \"age\": 38,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 53,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Rotherham\",\n         \"age\": 61,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Rotherham\",\n         \"age\": 78,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 77,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Rotherham\",\n         \"age\": 13,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 95,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Rotherham\",\n         \"age\": 59,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 68,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Pickering\",\n         \"age\": 44,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 63,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Pickering\",\n         \"age\": 52,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Pickering\",\n         \"age\": 63,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 97,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 51,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 85,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Halifax\",\n         \"age\": 32,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 66,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Darlington\",\n         \"age\": 41,\n         \"diagnosis\": \"Dementia\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Leeds\",\n         \"age\": 47,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 61,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 48,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 59,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Darlington\",\n         \"age\": 32,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 59,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Bradford\",\n         \"age\": 39,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 32,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Pickering\",\n         \"age\": 25,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 61,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 51,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 85,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Halifax\",\n         \"age\": 32,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 66,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Darlington\",\n         \"age\": 41,\n         \"diagnosis\": \"Dementia\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Sheffield\",\n         \"age\": 17,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 33,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Bradford\",\n         \"age\": 51,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 85,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Huddersfield\",\n         \"age\": 47,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 47,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Scarborough\",\n         \"age\": 41,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Leeds\",\n         \"age\": 63,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 55,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Leeds\",\n         \"age\": 19,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 32,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Leeds\",\n         \"age\": 38,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 53,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Leeds\",\n         \"age\": 61,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Leeds\",\n         \"age\": 78,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 77,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 13,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 95,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 59,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 68,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 44,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 63,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 52,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"York\",\n         \"age\": 63,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 97,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Halifax\",\n         \"age\": 51,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 85,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Halifax\",\n         \"age\": 32,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 66,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Halifax\",\n         \"age\": 41,\n         \"diagnosis\": \"Dementia\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Huddersfield\",\n         \"age\": 47,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 61,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Huddersfield\",\n         \"age\": 48,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 59,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Huddersfield\",\n         \"age\": 32,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 59,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Hull\",\n         \"age\": 39,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 32,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Hull\",\n         \"age\": 25,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 61,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Hull\",\n         \"age\": 51,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 85,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Hull\",\n         \"age\": 32,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 66,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Sheffield\",\n         \"age\": 41,\n         \"diagnosis\": \"Dementia\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Sheffield\",\n         \"age\": 17,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 33,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Scarborough\",\n         \"age\": 51,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 85,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Scarborough\",\n         \"age\": 47,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 47,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Scarborough\",\n         \"age\": 41,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Bridlington\",\n         \"age\": 63,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 55,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Bridlington\",\n         \"age\": 19,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 32,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Bridlington\",\n         \"age\": 38,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 53,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Rotherham\",\n         \"age\": 61,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Rotherham\",\n         \"age\": 45,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 77,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Rotherham\",\n         \"age\": 17,\n         \"diagnosis\": \"Measles\",\n         \"healthScore\": 95,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Rotherham\",\n         \"age\": 69,\n         \"diagnosis\": \"Asthma\",\n         \"healthScore\": 68,\n         \"gender\": \"male\"\n      },\n      {\n         \"location\": \"Pickering\",\n         \"age\": 44,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 63,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Pickering\",\n         \"age\": 52,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 71,\n         \"gender\": \"female\"\n      },\n      {\n         \"location\": \"Pickering\",\n         \"age\": 63,\n         \"diagnosis\": \"Diabetes\",\n         \"healthScore\": 97,\n         \"gender\": \"male\"\n      },            \n   ]\n})]\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 440,
+        "y": 80,
+        "wires": [
+            [
+                "46355e47.44cb2"
+            ]
+        ]
+    },
+    {
+        "id": "6e291547.76057c",
+        "type": "http response",
+        "z": "f8da94c0.a762c8",
+        "name": "Create Success",
+        "statusCode": "",
+        "headers": {},
+        "x": 1240,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "608b69e7.bb00e8",
+        "type": "http in",
+        "z": "f8da94c0.a762c8",
+        "name": "[get]/BI-data",
+        "url": "/BI-data",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 200,
+        "wires": [
+            [
+                "cb3f3d8b.6f4d8"
+            ]
+        ]
+    },
+    {
+        "id": "cb3f3d8b.6f4d8",
+        "type": "function",
+        "z": "f8da94c0.a762c8",
+        "name": "Redis HGET params",
+        "func": "payload = msg.payload\nmsg.payload = ['bi', 'data'];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 400,
+        "y": 200,
+        "wires": [
+            [
+                "aa30743.236a788"
+            ]
+        ]
+    },
+    {
+        "id": "aa30743.236a788",
+        "type": "redis-command",
+        "z": "f8da94c0.a762c8",
+        "server": "674a67d2.221358",
+        "command": "hget",
+        "name": "",
+        "topic": "",
+        "x": 630,
+        "y": 200,
+        "wires": [
+            [
+                "57d37b2d.466ed4"
+            ]
+        ]
+    },
+    {
+        "id": "57d37b2d.466ed4",
+        "type": "switch",
+        "z": "f8da94c0.a762c8",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 830,
+        "y": 200,
+        "wires": [
+            [
+                "1456ea93.3919b5"
+            ],
+            [
+                "c9ef5a0b.18d1c8"
+            ]
+        ]
+    },
+    {
+        "id": "1456ea93.3919b5",
+        "type": "function",
+        "z": "f8da94c0.a762c8",
+        "name": "Result JSON",
+        "func": "msg.payload = {data: \"fail\", msg: \"data doesn't exists\"};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1010,
+        "y": 180,
+        "wires": [
+            [
+                "92f50fcc.cc6b8"
+            ]
+        ]
+    },
+    {
+        "id": "c9ef5a0b.18d1c8",
+        "type": "json",
+        "z": "f8da94c0.a762c8",
+        "name": "Database JSON",
+        "property": "payload",
+        "action": "",
+        "pretty": true,
+        "x": 1020,
+        "y": 220,
+        "wires": [
+            [
+                "bd35dfcb.d7e21"
+            ]
+        ]
+    },
+    {
+        "id": "bd35dfcb.d7e21",
+        "type": "http response",
+        "z": "f8da94c0.a762c8",
+        "name": "GET Success",
+        "statusCode": "",
+        "headers": {},
+        "x": 1280,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "92f50fcc.cc6b8",
+        "type": "http response",
+        "z": "f8da94c0.a762c8",
+        "name": "GET Data Error",
+        "statusCode": "400",
+        "headers": {},
+        "x": 1220,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "674a67d2.221358",
+        "type": "redis-config",
+        "z": "",
+        "host": "46.101.44.236",
+        "port": "{{REDIS_PORT_6379_TCP_PORT}}",
+        "dbase": "{{REDIS_DB}}",
+        "pass": "X6NvLgr5NJ/INEuzt6mxP5QdTyK+2ZQiXwwtaj8Mipy97SRM1pj6dK734XmoFZrNg5+b8kpO54cIPTVkdeveloper@ubuntu"
+    }
+]
